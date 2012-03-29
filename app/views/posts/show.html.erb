@@ -1,25 +1,27 @@
-<p id="notice"><%= notice %></p>
+<h1>/Post</h1>
 
 <p>
-  <b>Name:</b>
+  <b>Name</b><br>
   <%= @post.name %>
 </p>
 
 <p>
-  <b>Title:</b>
+  <b>Title</b><br>
   <%= @post.title %>
 </p>
 
 <p>
-  <b>Postdate:</b>
+  <b>Postdate</b><br>
   <%= @post.postdate %>
 </p>
 
 <p>
-  <b>Content:</b>
+  <b>Content</b><br>
   <%= @post.content %>
 </p>
 
-
-<%= link_to 'Edit', edit_post_path(@post) %> |
-<%= link_to 'Back', posts_path %>
+<div class="form-actions">
+  <%= link_to 'Back', posts_path, :class => 'btn'  %>
+  <%= link_to 'Edit', edit_post_path(@post), :class => 'btn' %>
+  <%= link_to 'Delete', post_path(@post), :method => 'delete', :confirm => 'Are you sure?', :class => 'btn btn-danger' %>
+</div>
