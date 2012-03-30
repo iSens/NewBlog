@@ -22,19 +22,31 @@
 	      <a class="brand" href="#">My New Blog!</a>
 	      <div class="nav-collapse">
 	        <ul class="nav">
-	          <li><%= link_to "home", posts_path %></li>
-	          <li><%= link_to "About" %></li>
-	          <li><%= link_to "Contact" %></li>
+	          <li><%= link_to "Home", posts_path %></li>
+	          <li><%= link_to "About", 'about' %></li>
+	          <li><%= link_to "Contact", 'contact' %></li>
+			  <% if current_user %>
+			  <li><%= link_to 'New Post', new_post_path %></li>						
+			  <li><a heref="#">Logged in as <%= current_user.email %></a></li>
+			  <li><%= link_to "Log out", session_path("current"), method: "delete" %></li>
+					<% else %>
+	          <li><%= link_to "Log In", login_path %></li><% end %>
 	        </ul>
 	      </div>
 	    </div>
 	  </div>
 	</div>
-
 	
 	<div class="container">
 	  <div class="row">
-	    <div class="span9"><%= yield %></div>
+	    <div class="span9">
+			<% flash.each do |name, msg| %>
+			<div class="alert alert-success">
+			<a class="close" data-dismiss="alert">×</a>
+				<%= msg %>
+			</div>
+			<% end %>
+	        <%= yield %></div>
 	    <div class="span3">
 	      <h2>About Us</h2>
 	      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>        

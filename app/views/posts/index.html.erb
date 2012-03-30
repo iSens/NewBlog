@@ -1,17 +1,6 @@
-<table class="table table-striped">
-  <tbody>
     <% @posts.each do |post| %>
-      <tr>
-        <td><%= link_to post.title, post_path(post) %></td>
-        <td><%= post.name %></td>
-        <td><%= post.created_at.strftime('%b %d, %Y') %></td>
-		<td><%= raw truncate post.content, :length => 100 %></td>
-        <td>
-          <%= link_to 'Read the article', post_path(post), :class => 'btn btn-mini' %>
-        </td>
-      </tr>
+     <h1><%= link_to post.title, post_path(post) %></h1>
+        <p><%= post.name %> <em><%= post.created_at.strftime('%b %d, %Y') %></em></p>
+		<p><%= raw truncate post.content, :length => 300 %></p>
+		<p><%= link_to 'Read the article', post_path(post), :class => 'btn btn-mini' %></p>
     <% end %>
-  </tbody>
-</table>
-
-<%= link_to 'New', new_post_path, :class => 'btn btn-primary' %>
