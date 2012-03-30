@@ -4,8 +4,35 @@
 <p>
   <%= @post.content %>
 </p>
-
+<h3>Comments</h3>
+<% @post.comments.each do |comment| %>
+<div class="alert alert-info" style="width:400px">
+<p>Name: <%= comment.name %></p>
+<p><%= comment.body %></p>	
+<% if current_user %>
+<%= link_to 'Delete comment', [comment.post, comment], :confirm => 'Are you sure?', :method => :delete, :class => 'btn-mini btn-danger' %>
+		<% else %>
+  <% end %>
+</div>
+<% end %>
+<h3>Add a comment:</h3>
+<%= form_for([@post, @post.comments.build]) do |f| %>
+<div class="field">
+	<%= f.label :name %>
+	<%= f.text_field :name %>
+</div>
+<div class="field">
+	<%= f.label :Comment %>
+	<%= f.text_area :body, :size => '50' %>
+</div>
+<div class="actions">
+	<%= f.submit %>
+</div>	
+<% end %>
 <div class="form-actions">
   <%= link_to 'Back', posts_path, :class => 'btn'  %>
+<% if current_user %>
   <%= link_to 'Edit', edit_post_path(@post), :class => 'btn' %>
+		<% else %>
+  <% end %>
 </div>
