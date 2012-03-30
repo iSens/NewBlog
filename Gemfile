@@ -21,6 +21,11 @@ group :assets do
   gem 'twitter-bootstrap-rails'
   gem 'formtastic-bootstrap'
 end
+# gemfile
+group :production do
+  gem 'pg'
+end
+
 
 gem 'jquery-rails'
 
