@@ -2,17 +2,19 @@
 <p>Posted by <%= @post.name %> <em><%= @post.created_at.strftime('%b %d, %Y') %></em></p>
 
 <p>
-  <%= @post.content %>
+  <%= raw @post.content %>
 </p>
 <h3>Comments</h3>
 <% @post.comments.each do |comment| %>
 <div class="alert alert-info" style="width:400px">
-<p>Name: <%= comment.name %></p>
-<p><%= comment.body %></p>	
-<% if current_user %>
-<%= link_to 'Delete comment', [comment.post, comment], :confirm => 'Are you sure?', :method => :delete, :class => 'btn-mini btn-danger' %>
-		<% else %>
-  <% end %>
+	<div style="float:right">
+	<% if current_user %>
+	<%= link_to 'Delete comment', [comment.post, comment], :confirm => 'Are you sure?', :method => :delete, :class => 'btn-mini btn-danger' %>
+			<% else %>
+	  <% end %>
+	</div>
+<p><strong>Name:</strong> <%= comment.name %></p>
+<em><%= comment.body %></em>
 </div>
 <% end %>
 <h3>Add a comment:</h3>
