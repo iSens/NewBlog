@@ -1,7 +1,8 @@
 <h1><%= @post.title %></h1>
-<p>Posted by <%= @post.name %> <em><%= @post.created_at.strftime('%b %d, %Y') %></em></p>
+<p>Posted by <%= @post.name %> <em><%= @post.postdate.strftime('%b %d, %Y') %></em></p>
 
 <p>
+  <%= image_tag @post.photo.url(:medium), :class => 'image' %>
   <%= raw @post.content %>
 </p>
 <h3>Comments</h3>

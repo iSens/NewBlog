@@ -1,6 +1,6 @@
  <% @posts.each do |post| %>
      <h1><%= post.title %></h1>
-        <p>Posted by <%= post.name %> <em><%= post.created_at.strftime('%b %d, %Y') %></em></p>
+        <p>Posted by <%= post.name %> <em><%= post.postdate.strftime('%b %d, %Y') %></em></p>
 		<p><%= raw truncate post.content, :length => 300 %></p>
 		<p><%= link_to 'Read the article', post_path(post), :class => 'btn' %></p>
     <% end %>
